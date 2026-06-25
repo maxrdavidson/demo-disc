@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b8vjymm5vla2x" path="res://DarkCity/Scenes/Main.gd" id="1_numeb"]
 [ext_resource type="PackedScene" uid="uid://r04dkhdog5xx" path="res://DarkCity/Scenes/Character.tscn" id="2_numeb"]
 [ext_resource type="Texture2D" uid="uid://dftm6u561mclt" path="res://DarkCity/Assets/Textures/Horror_Brick_11-128x128.png" id="2_tv5f8"]
+[ext_resource type="PackedScene" uid="uid://dibb4ew33ia" path="res://DarkCity/Scenes/CameraZone.tscn" id="5_l4t2k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pax0p"]
 albedo_texture = ExtResource("1_27nht")
@@ -27,13 +28,20 @@ fog_depth_curve = 0.5176336
 volumetric_fog_density = 0.001
 volumetric_fog_emission = Color(0.8089983, 0.8089983, 0.8089982, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fabgo"]
-size = Vector3(5, 3, 16)
+[sub_resource type="BoxShape3D" id="BoxShape3D_qgai7"]
+size = Vector3(5, 1, 13)
 
-[node name="City1" type="Node3D" unique_id=271925407 node_paths=PackedStringArray("current_camera", "current_area", "area_cmd")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0ovx"]
+size = Vector3(5, 1, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d00c2"]
+size = Vector3(11, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oiann"]
+size = Vector3(11, 1, 13)
+
+[node name="City1" type="Node3D" unique_id=271925407 node_paths=PackedStringArray("area_cmd")]
 script = ExtResource("1_numeb")
-current_camera = NodePath("Area CMD/Area1/Cam")
-current_area = NodePath("Area CMD/Area1")
 area_cmd = NodePath("Area CMD")
 
 [node name="CharacterBody3D" parent="." unique_id=1898535286 instance=ExtResource("2_numeb")]
@@ -64,25 +72,30 @@ environment = SubResource("Environment_fabgo")
 
 [node name="Area CMD" type="Node3D" parent="." unique_id=1108678608]
 
-[node name="Area1" type="Area3D" parent="Area CMD" unique_id=862289835]
-collision_layer = 17
-metadata/control_offset = 0
+[node name="Area1" parent="Area CMD" unique_id=609419186 instance=ExtResource("5_l4t2k")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area CMD/Area1" unique_id=1112807259]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 10.5)
-shape = SubResource("BoxShape3D_fabgo")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area CMD/Area1" unique_id=1604194929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 9)
+shape = SubResource("BoxShape3D_qgai7")
 
-[node name="Cam" type="Camera3D" parent="Area CMD/Area1" unique_id=1383068932]
-transform = Transform3D(0.9965655, -0.040137466, 0.0724306, 0, 0.87467843, 0.48470363, -0.08280826, -0.48303893, 0.87167436, -0.15806955, 4.0364637, 14.160421)
+[node name="Area2" parent="Area CMD" unique_id=1097657966 instance=ExtResource("5_l4t2k")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 0, 0)
 
-[node name="Area2" type="Area3D" parent="Area CMD" unique_id=70316431]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8, 0, 0)
-collision_layer = 17
-metadata/control_offset = -80
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area CMD/Area2" unique_id=1351324015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3918964e-08, 0, 3.5)
+shape = SubResource("BoxShape3D_r0ovx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area CMD/Area2" unique_id=1157500327]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3918935e-08, 1, 4.5)
-shape = SubResource("BoxShape3D_fabgo")
+[node name="Area3" parent="Area CMD" unique_id=771898144 instance=ExtResource("5_l4t2k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4347515, 0, 0)
 
-[node name="Cam" type="Camera3D" parent="Area CMD/Area2" unique_id=503794952]
-transform = Transform3D(0.99859446, -0.02569002, 0.046359263, 2.4678786e-09, 0.87467843, 0.4847036, -0.053001493, -0.4840224, 0.873449, -0.15806954, 4.0364637, 14.160421)
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area CMD/Area3" unique_id=1123609685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 8.5)
+shape = SubResource("BoxShape3D_d00c2")
+debug_color = Color(0, 0.6, 0.69803923, 0.5921569)
+
+[node name="Area4" parent="Area CMD" unique_id=1418775908 instance=ExtResource("5_l4t2k")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area CMD/Area4" unique_id=1936765252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.000001, 0, 9)
+shape = SubResource("BoxShape3D_oiann")

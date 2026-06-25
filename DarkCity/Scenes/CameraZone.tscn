@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dibb4ew33ia"]
+
+[node name="Area1" type="Area3D" unique_id=609419186]
+collision_layer = 17
+
+[node name="Cam" type="Camera3D" parent="." unique_id=701953403]
+transform = Transform3D(0.9965655, -0.040137466, 0.0724306, 0, 0.87467843, 0.48470363, -0.08280826, -0.48303893, 0.87167436, -0.15806955, 4.0364637, 14.160421)

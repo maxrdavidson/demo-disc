@@ -9,6 +9,8 @@ func _ready() -> void:
 	for _area in area_cmd.get_children():
 		if _area is Area3D:
 			_area.body_entered.connect(set_area.bind(_area))
+	current_area = area_cmd.get_node("Area1")
+	current_camera = current_area.get_node("Cam")
 
 func set_area(body:Node3D,area:Area3D):
 	if body is CharacterBody3D and area != current_area:
@@ -17,7 +19,6 @@ func set_area(body:Node3D,area:Area3D):
 		current_camera.current = false
 		current_camera = area.get_node("Cam")
 		current_camera.current = true
-		body.set_offset(area.get_meta("control_offset",0))
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
