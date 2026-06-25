@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://r04dkhdog5xx"]
+
+[ext_resource type="Script" uid="uid://v6uwdkwcqowm" path="res://DarkCity/Scenes/Character.gd" id="1_y210j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d00c2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fabgo"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d00c2"]
+radius = 0.1
+height = 1.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1898535286 node_paths=PackedStringArray("collider")]
+collision_mask = 17
+script = ExtResource("1_y210j")
+collider = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1595212639]
+shape = SubResource("CapsuleShape3D_d00c2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=543536747]
+mesh = SubResource("CapsuleMesh_fabgo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=452298219]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.4712454, -0.47191238)
+mesh = SubResource("CapsuleMesh_d00c2")

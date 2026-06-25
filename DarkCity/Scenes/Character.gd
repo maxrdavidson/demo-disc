@@ -1,11 +1,12 @@
 extends CharacterBody3D
 
-var move_speed = 3
+@export var walk_speed:int = 110
+@export var run_speed:int = 250
+@export var turn_speed:int = 8
 var target_velocity = Vector3.ZERO
 var control_offset:int = 0
 var temp_offset = control_offset
 @export var collider: CollisionShape3D
-@export var area_cmd: Node3D
 
 func _ready() -> void:
 	pass
@@ -32,17 +33,15 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down") 
-	print(input_dir)
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() 
-	#direction = direction.rotated(Vector3.UP, control_offset)
+	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+
+	rotation.y -= input_dir.x * turn_speed * delta
 	
-	if direction:
-		velocity.x = direction.x * move_speed
-		velocity.z = direction.z * move_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, move_speed)
-		velocity.z = move_toward(velocity.z, 0, move_speed)
-	#look_at(global_position + velocity, Vector3.UP)
-	rotation = velocity
+	var _speed = walk_speed
+	if Input.is_action_pressed("run"):
+		_speed = run_speed
+	var vel = -transform.basis.z * -input_dir.y * _speed * delta
+	velocity.x = vel.x
+	velocity.z = vel.z
+
 	move_and_slide()

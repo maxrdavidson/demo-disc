@@ -2,16 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://c86te32ugxfrv" path="res://DarkCity/Assets/Textures/T (1).jpg" id="1_27nht"]
 [ext_resource type="Script" uid="uid://b8vjymm5vla2x" path="res://DarkCity/Scenes/Main.gd" id="1_numeb"]
-[ext_resource type="Script" uid="uid://v6uwdkwcqowm" path="res://DarkCity/Scenes/Character.gd" id="1_tv5f8"]
+[ext_resource type="PackedScene" uid="uid://r04dkhdog5xx" path="res://DarkCity/Scenes/Character.tscn" id="2_numeb"]
 [ext_resource type="Texture2D" uid="uid://dftm6u561mclt" path="res://DarkCity/Assets/Textures/Horror_Brick_11-128x128.png" id="2_tv5f8"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d00c2"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_fabgo"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_d00c2"]
-radius = 0.1
-height = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pax0p"]
 albedo_texture = ExtResource("1_27nht")
@@ -44,22 +36,8 @@ current_camera = NodePath("Area CMD/Area1/Cam")
 current_area = NodePath("Area CMD/Area1")
 area_cmd = NodePath("Area CMD")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=679267890 node_paths=PackedStringArray("collider", "area_cmd")]
+[node name="CharacterBody3D" parent="." unique_id=1898535286 instance=ExtResource("2_numeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.715034, 10.95414)
-collision_mask = 17
-script = ExtResource("1_tv5f8")
-collider = NodePath("CollisionShape3D")
-area_cmd = NodePath("../Area CMD")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=220473634]
-shape = SubResource("CapsuleShape3D_d00c2")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=738256450]
-mesh = SubResource("CapsuleMesh_fabgo")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="CharacterBody3D" unique_id=2031508781]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.4712454, -0.47191238)
-mesh = SubResource("CapsuleMesh_d00c2")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=348424991]
 
